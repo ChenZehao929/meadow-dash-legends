@@ -505,6 +505,18 @@
       return true;
     }
 
+    function setTouchInput(input, action, pressed, handlers = {}) {
+      if (action === 'left') input.left = pressed;
+      if (action === 'right') input.right = pressed;
+      if (action === 'down') input.down = pressed;
+      if (action === 'jump') {
+        if (pressed && handlers.jump) handlers.jump();
+        input.jumpHeld = pressed;
+      }
+      if (action === 'detonate' && pressed && handlers.detonate) handlers.detonate();
+      return input;
+    }
+
     function stepPlayer(player, input, solids, dt) {
       setCrouch(player, Boolean(input.down), solids);
       const direction = (input.right ? 1 : 0) - (input.left ? 1 : 0);
@@ -1002,7 +1014,7 @@
     }
 
     const GameCore = {
-      rectsOverlap, createPlayer, setCrouch, startJump,
+      rectsOverlap, createPlayer, setCrouch, startJump, setTouchInput,
       getPlayerMovementProfile, updatePlayerStamina, stepPlayer,
       overlapsHorizontally, ensureMinimumPassageGap,
       assignRandomQuestionRewards, createFlowerPatch, getFlowerPatchSolid, getFlowerSnapperRect, stepFlowerPatch, createRandomFlowerPatches, createLevelFlowerPatches, isFlowerPatchPlacementClear, adjustFlowerPatchPlacement, createEnemy, isPlayerInTurtleSpikeArc, shouldTurtleTriggerSpike, rollEnemyRespawn, randomizeEnemySpawn, registerEnemyShotFailure, applyPowerupEffect,
@@ -1415,11 +1427,7 @@
       const action = button.dataset.input;
       const setPressed = (pressed) => {
         button.classList.toggle('is-held', pressed);
-        if (action === 'left') input.left = pressed;
-        if (action === 'right') input.right = pressed;
-        if (action === 'down') input.down = pressed;
-        if (action === 'jump' && pressed) jumpPlayer();
-        if (action === 'detonate' && pressed) attemptDetonation();
+        GameCore.setTouchInput(input, action, pressed, { jump: jumpPlayer, detonate: attemptDetonation });
       };
       button.addEventListener('pointerdown', (event) => {
         event.preventDefault();
