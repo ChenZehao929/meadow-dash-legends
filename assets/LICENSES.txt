@@ -1,0 +1,26 @@
+Super Pixel Run asset record
+
+Pack: Platformer Pack Redux (360 assets)
+Author: Kenney
+License: CC0 1.0 Universal (public domain dedication)
+Source page: https://github.com/ETdoFresh/kenney.nl/tree/master/platformer-pack-redux-360-assets
+Official pack page: https://kenney.nl/assets/platformer-pack-redux
+Download date: 2026-09-08
+
+The PNG files in this folder are a curated local copy from the pack's PNG
+folders. The game uses them as optional visual assets and includes Canvas
+fallback drawings so it remains playable if a file is unavailable.
+
+Used roles:
+- tiles/grassMid.png, grassLeft.png, grassRight.png: grass platforms
+- tiles/brickBrown.png, boxCoin.png: brick and question blocks
+- tiles/backgroundGrass.png: optional background reference
+- characters/playerStand.png, playerWalk.png, playerJump.png, playerCrouch.png: player frames
+- characters/slimeBlue_move.png, slimeBlue_dead.png: enemy frames
+- items/coinGold.png, mushroomRed.png, bush.png: pickups and scenery
+- items/flagRed1.png, flagRed2.png: finish flag frames
+
+No proprietary Nintendo assets, logos, music, or sounds are included.
+
+The crouch frame is the pack's `alienBlue_duck.png`, downloaded from:
+https://github.com/ETdoFresh/kenney.nl/blob/master/platformer-pack-redux-360-assets/PNG/Players/Variable%20sizes/Blue/alienBlue_duck.png
